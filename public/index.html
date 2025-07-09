@@ -7,12 +7,17 @@
   </head>
   <body>
     <script>
+      // TUNGGU CMS GLOBAL TERLOAD DULU
       window.CMS_MANUAL_INIT = true;
-      fetch("config.json")
-        .then((res) => res.json())
-        .then((config) => {
-          CMS.init({ config });
-        });
+
+      window.addEventListener("load", function () {
+        fetch("config.json")
+          .then((res) => res.json())
+          .then((config) => {
+            window.CMS.init({ config });
+          })
+          .catch((err) => console.error("Failed to load config:", err));
+      });
     </script>
   </body>
 </html>
