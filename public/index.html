@@ -1,23 +1,18 @@
 <!doctype html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>Maunguli Admin</title>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</head>
-
-<body>
+  </head>
+  <body>
     <script>
-        window.CMS_MANUAL_INIT = true;
-
-        fetch("config.json")
-            .then((res) => res.json())
-            .then((config) => {
-                CMS.init({ config });
-            });
+      window.CMS_MANUAL_INIT = true;
+      fetch("config.json")
+        .then((res) => res.json())
+        .then((config) => {
+          CMS.init({ config });
+        });
     </script>
-
-</body>
-
+  </body>
 </html>
