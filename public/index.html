@@ -1,11 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <title>Maunguli Admin</title>
-
-    <script src="https://unpkg.com/decap-cms@^3.7.0/dist/decap-cms.js"></script>
-    <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="https://unpkg.com/decap-cms-app@^3.7.0/dist/decap-cms-app.js"></script>
   </head>
   <body>
     <div id="nc-root"></div>
@@ -13,23 +11,21 @@
     <script>
       window.CMS_MANUAL_INIT = true;
 
-      const tryInitCMS = () => {
+      const tryInit = () => {
         if (window.CMS && typeof window.CMS.init === "function") {
-          fetch("config.yml")
-            .then((res) => res.text())
-            .then((ymlText) => {
-              const config = jsyaml.load(ymlText);
+          fetch("config.json")
+            .then((res) => res.json())
+            .then((config) => {
               window.CMS.init({ config });
             })
-            .catch((err) => {
-              console.error("Failed to load YAML config:", err);
-            });
+            .catch((err) => console.error("Gagal load config.json:", err));
         } else {
-          setTimeout(tryInitCMS, 100);
+          // CMS belum ready, coba lagi nanti
+          setTimeout(tryInit, 100);
         }
       };
 
-      tryInitCMS();
+      tryInit();
     </script>
   </body>
 </html>
