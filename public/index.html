@@ -20,7 +20,7 @@
         const waitForCMS = setInterval(() => {
           if (window.CMS && typeof window.CMS.init === "function" && window.jsyaml) {
             clearInterval(waitForCMS);
-            fetch("admin.yaml")
+            fetch("admin.yml")
               .then((res) => res.text())
               .then((ymlText) => {
                 const config = jsyaml.load(ymlText);
