@@ -6,10 +6,11 @@
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
+    <div id="nc-root"></div> <!-- 🟢 Diperlukan oleh Decap CMS -->
+
     <script>
       window.CMS_MANUAL_INIT = true;
 
-      // Tunggu sampai CMS tersedia
       const tryInitCMS = () => {
         if (window.CMS && typeof window.CMS.init === "function") {
           fetch("config.json")
@@ -21,7 +22,7 @@
               console.error("Failed to load config:", err);
             });
         } else {
-          setTimeout(tryInitCMS, 100); // Coba lagi setelah 100ms
+          setTimeout(tryInitCMS, 100);
         }
       };
 
