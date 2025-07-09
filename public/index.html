@@ -15,7 +15,7 @@
 
       const tryInitCMS = () => {
         if (window.CMS && typeof window.CMS.init === "function") {
-          fetch("admin.yml")
+          fetch("admin.yaml")
             .then((res) => res.text())
             .then((ymlText) => {
               const config = jsyaml.load(ymlText);
