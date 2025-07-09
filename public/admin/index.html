@@ -2,17 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Admin</title>
-    <script src="https://unpkg.com/decap-cms@3.7.1/dist/decap-cms.js"></script>
-  </head>
-  <body>
+    <title>Admin Maunguli</title>
     <script>
       window.CMS_MANUAL_INIT = true;
     </script>
-    <script>
-      CMS.init({
-        config: "/admin/config.yml"
-      });
-    </script>
+    <script src="https://unpkg.com/decap-cms@3.7.1/dist/decap-cms.js" onload="CMS.init({ config: '/admin/config.yml' })"></script>
+  </head>
+  <body>
   </body>
 </html>
