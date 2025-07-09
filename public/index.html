@@ -4,11 +4,6 @@
     <meta charset="utf-8" />
     <title>Maunguli Admin</title>
 
-    <script>
-      window.CMS_MANUAL_INIT = true; // ⛔ Jangan letakkan di bawah, ini harus di atas sebelum CMS dimuat
-    </script>
-
-    <!-- CMS dan YAML parser -->
     <script src="https://unpkg.com/decap-cms@^3.7.0/dist/decap-cms.js"></script>
     <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   </head>
@@ -16,22 +11,25 @@
     <div id="nc-root"></div>
 
     <script>
-      window.addEventListener("load", () => {
-        const waitForCMS = setInterval(() => {
-          if (window.CMS && typeof window.CMS.init === "function" && window.jsyaml) {
-            clearInterval(waitForCMS);
-            fetch("config.yml")
-              .then((res) => res.text())
-              .then((ymlText) => {
-                const config = jsyaml.load(ymlText);
-                window.CMS.init({ config });
-              })
-              .catch((err) => {
-                console.error("Failed to load config:", err);
-              });
-          }
-        }, 100);
-      });
+      window.CMS_MANUAL_INIT = true;
+
+      const tryInitCMS = () => {
+        if (window.CMS && typeof window.CMS.init === "function") {
+          fetch("config.yml")
+            .then((res) => res.text())
+            .then((ymlText) => {
+              const config = jsyaml.load(ymlText);
+              window.CMS.init({ config });
+            })
+            .catch((err) => {
+              console.error("Failed to load YAML config:", err);
+            });
+        } else {
+          setTimeout(tryInitCMS, 100);
+        }
+      };
+
+      tryInitCMS();
     </script>
   </body>
 </html>
