@@ -1,7 +1,7 @@
 {
   "backend": {
     "name": "github",
-    "repo": "dhikrama/blog.maunguli.com",
+    "repo": "ernocobain/blog",
     "branch": "main"
   },
   "media_folder": "public/images/uploads",
